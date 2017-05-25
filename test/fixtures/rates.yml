@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  currency: MyString
+  table: MyString
+  value_currency: 9.99
+  value_pln: 9.99
+
+two:
+  currency: MyString
+  table: MyString
+  value_currency: 9.99
+  value_pln: 9.99

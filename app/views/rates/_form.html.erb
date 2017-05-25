@@ -1,0 +1,33 @@
+<%= form_for(rate) do |f| %>
+<% if rate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rate.errors.count, "error") %> prohibited this rate from being saved:</h2>
+
+      <ul>
+      <% rate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :currency %>
+    <%= f.select(:currency, ["EUR", "SEK", "PLN", "NOK"]) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :value_currency %>
+    <%= f.text_field :value_currency %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date %>
+    <%= f.date_select :date %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

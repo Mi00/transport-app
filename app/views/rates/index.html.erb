@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-hover col-md-12">
+			<tr>
+				<th>Currency</th>
+				<th>Table</th>
+				<th>Table Date</th>
+				<th>Value currency</th>
+				<th>Value PLN</th>
+				<th>Date</th>
+				<th>Converter</th>		
+			</tr>
+			<% @rates.each do |rate| %>
+			<tr>
+				<td><%= rate.currency %></td>
+				<td><%= rate.table %></td>
+				<td><%= rate.table_date %></td>
+				<td><%= rate.value_currency %></td>
+				<td><%= rate.value_pln %></td>
+				<td><%= rate.date %></td>
+				<td><%= rate.converter %></td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+<br><br>
+<div class="row">
+	<div class="col-md-12 text-center">
+		<%= link_to "Nowy dowod", new_rate_path, style: "font-size: 20px;" %>
+	</div>
+</div
+
