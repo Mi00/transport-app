@@ -1,0 +1,99 @@
+<div class="row text-center">
+	<div class="col-md-6 borders">
+		Pieczec firmowa
+	</div>
+	<div class="col-md-3 borders">
+		Miejscowosc
+	</div>
+	<div class="col-md-3 borders">
+		DD/MM/RRRR
+	</div>
+</div>
+
+<div class="row text-center">
+	<div class="col-md-6 borders">
+		 Przedsiębiorstwo Transportowo-Handlowo-Usługowe "TRANS-MAR"<br>
+		 Janusz Franciszek Kawula<br>
+	</div>
+	<div class="col-md-3 borders">
+		Szczecin<br>&nbsp;
+	</div>
+	<div class="col-md-3 borders">
+		<%= @rate.date %><br>&nbsp;
+	</div>
+</div>
+<div class="row text-center">
+	<div class="col-md-6 borders">
+		ul. Lniana 16/25, 70-777 Szczecin<br>
+		 NIP PL 955-169-96-67, REGON 812685370
+	</div>
+	<div class="col-md-3 borders">
+		Dowod wewnetrzny<br>
+		&nbsp;
+	</div>
+	<div class="col-md-3 borders">
+		&nbsp;<br>
+		&nbsp;
+	</div>
+</div>
+
+<div class="row text-center">
+	<div class="col-md-8 borders">		
+		Nazwa towaru, opłaty lub tytuł i cel wydatku
+	</div>
+	<div class="col-md-4 borders">
+		Wartość [zł]
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 text-left borders">
+		OPŁATA DROGOWA<br>
+		ZS9801S<br>
+		TAB. NR <%= @rate.table %> z dn. <%= @rate.table_date %><br>
+		<%= @rate.currency %> = <%= @rate.converter  %> PLN<br>
+		<%= @rate.value_currency %> <%= @rate.currency %> x <%= @rate.converter %> = <%= @rate.value_pln %>
+	</div>
+	<div class="col-md-4 text-right borders">
+		<%= @rate.value_pln %><br>&nbsp;
+		<br>&nbsp;
+		<br>&nbsp;
+		<br>&nbsp;
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-2 borders">
+		Słownie zł:
+	</div>
+	<div class="col-md-6 borders">
+		siedemdziesiąt jeden 27/100
+	</div>
+	<div class="col-md-2 borders">
+		RAZEM:
+	</div>
+	<div class="col-md-2 borders">
+		<%= @rate.value_pln %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-3 borders">
+		&nbsp;<br>
+		&nbsp;<br>
+		Podpis
+	</div>
+	<div class="col-md-5 borders">
+		&nbsp;<br>
+		&nbsp;<br>
+		Zatwierdził
+	</div>
+	<div class="col-md-2 borders">
+		&nbsp;<br>
+		Pozycja księgowania nr<br>
+		&nbsp; 
+	</div>
+	<div class="col-md-2 borders">
+		&nbsp;<br>
+		&nbsp;<br>
+		&nbsp;
+	</div>
+</div>

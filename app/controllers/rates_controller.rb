@@ -1,11 +1,17 @@
 class RatesController < ApplicationController
   
+  before_action :set_rate, only: [:show, :edit, :update, :destroy]
+
   def index
   	@rates = Rate.all
   end
 
   def new
   	@rate = Rate.new
+  end
+
+  def show
+
   end
 
   def create

@@ -2,23 +2,27 @@
 	<div class="col-md-12">
 		<table class="table table-hover col-md-12">
 			<tr>
-				<th>Currency</th>
-				<th>Table</th>
-				<th>Table Date</th>
-				<th>Value currency</th>
-				<th>Value PLN</th>
-				<th>Date</th>
-				<th>Converter</th>		
+				<th>Lp.</th>
+				<th>Data</th>
+				<th>Waluta</th>
+				<th>Wartość w walucie</th>
+				<th>Tabela</th>
+				<th>Data tabeli</th>
+				<th>Kurs</th>
+				<th>Wartość w zł</th>	
+				<th> </th>	
 			</tr>
 			<% @rates.each do |rate| %>
 			<tr>
+				<td><%= rate.id %></td>
+				<td><%= rate.date %></td>
 				<td><%= rate.currency %></td>
+				<td><%= rate.value_currency %></td>
 				<td><%= rate.table %></td>
 				<td><%= rate.table_date %></td>
-				<td><%= rate.value_currency %></td>
-				<td><%= rate.value_pln %></td>
-				<td><%= rate.date %></td>
 				<td><%= rate.converter %></td>
+				<td><%= rate.value_pln %></td>				
+				<td><%= link_to "Show", rate_path(rate.id) %></td>
 			</tr>
 			<% end %>
 		</table>
