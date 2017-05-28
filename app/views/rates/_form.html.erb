@@ -18,6 +18,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :car_id %>
+    <%= f.collection_select :car_id, @cars, :id, :car_number %>
+  </div>
+
+  <div class="field">
     <%= f.label :value_currency %>
     <%= f.text_field :value_currency %>
   </div>

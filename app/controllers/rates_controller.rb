@@ -8,6 +8,7 @@ class RatesController < ApplicationController
 
   def new
   	@rate = Rate.new
+    @cars = Car.all
   end
 
   def show
@@ -16,6 +17,7 @@ class RatesController < ApplicationController
 
   def create
   	@rate = Rate.new(rate_params)
+    @cars = Car.all
 
   	respond_to do |format|
       if @rate.save
@@ -38,6 +40,6 @@ class RatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rate_params
-      params.require(:rate).permit(:table, :value_currency, :value_pln, :currency, :date, :table_date, :converter)
+      params.require(:rate).permit(:table, :value_currency, :value_pln, :currency, :date, :table_date, :converter, :car_id)
     end
 end

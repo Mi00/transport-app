@@ -3,6 +3,7 @@
 		<table class="table table-hover col-md-12">
 			<tr>
 				<th>Lp.</th>
+				<th>Auto</th>
 				<th>Data</th>
 				<th>Waluta</th>
 				<th>Wartość w walucie</th>
@@ -15,6 +16,7 @@
 			<% @rates.each do |rate| %>
 			<tr>
 				<td><%= rate.id %></td>
+				<td><%= find_carname(rate.car_id) %></td>
 				<td><%= rate.date %></td>
 				<td><%= rate.currency %></td>
 				<td><%= rate.value_currency %></td>
@@ -33,5 +35,5 @@
 	<div class="col-md-12 text-center">
 		<%= link_to "Nowy dowod", new_rate_path, style: "font-size: 20px;" %>
 	</div>
-</div
+</div>
 

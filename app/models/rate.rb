@@ -1,16 +1,18 @@
 class Rate < ApplicationRecord
+	belongs_to :car
 	  validates :value_currency, numericality: true
 
 	  before_save :get_values
 
 	  def get_values
 	  	if currency != "PLN"
-		  	url = "http://api.nbp.pl/api/exchangerates/rates/a/#{currency.downcase}/#{date}/?format=json"
+	  		self.table_date = date
+		  	url = "http://api.nbp.pl/api/exchangerates/rates/a/#{currency.downcase}/#{table_date}/?format=json"
 		    response = HTTParty.get(url)
 
 		  	until response.body != "404 NotFound - Not Found - Brak danych" do
-		  		self.date = date.yesterday
-			    url = "http://api.nbp.pl/api/exchangerates/rates/a/#{currency.downcase}/#{date}/?format=json"
+		  		self.table_date = table_date.yesterday
+			    url = "http://api.nbp.pl/api/exchangerates/rates/a/#{currency.downcase}/#{table_date}/?format=json"
 			    response = HTTParty.get(url)		    
 			end
 			
