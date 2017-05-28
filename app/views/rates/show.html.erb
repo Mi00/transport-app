@@ -49,9 +49,15 @@
 	<div class="col-md-8 text-left borders">
 		OPŁATA DROGOWA<br>
 		ZS9801S<br>
-		TAB. NR <%= @rate.table %> z dn. <%= @rate.table_date %><br>
-		<%= @rate.currency %> = <%= @rate.converter  %> PLN<br>
-		<%= @rate.value_currency %> <%= @rate.currency %> x <%= @rate.converter %> = <%= @rate.value_pln %>
+		<% if @rate.currency != "PLN" %>
+			TAB. NR <%= @rate.table %> z dn. <%= @rate.table_date %><br>
+			<%= @rate.currency %> = <%= @rate.converter  %> PLN<br>
+			<%= @rate.value_currency %> <%= @rate.currency %> x <%= @rate.converter %> = <%= @rate.value_pln %>
+		<% else %>
+			&nbsp;
+			<br>&nbsp;
+			<br>&nbsp;
+		<% end %>
 	</div>
 	<div class="col-md-4 text-right borders">
 		<%= @rate.value_pln %><br>&nbsp;
@@ -61,16 +67,16 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-2 borders">
+	<div class="col-md-2 borders text-center">
 		Słownie zł:
 	</div>
-	<div class="col-md-6 borders">
+	<div class="col-md-6 borders text-center">
 		siedemdziesiąt jeden 27/100
 	</div>
-	<div class="col-md-2 borders">
+	<div class="col-md-2 borders text-center">
 		RAZEM:
 	</div>
-	<div class="col-md-2 borders">
+	<div class="col-md-2 borders text-right">
 		<%= @rate.value_pln %>
 	</div>
 </div>
