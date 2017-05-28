@@ -28,6 +28,11 @@
   </div>
 
   <div class="field">
+    <%= f.label "Opłata drogowa?" %>
+    <%= f.check_box :payment %>
+  </div>
+
+  <div class="field">
     <%= f.label :date %>
     <%= f.date_select :date %>
   </div>

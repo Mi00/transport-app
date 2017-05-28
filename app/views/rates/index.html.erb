@@ -10,7 +10,9 @@
 				<th>Tabela</th>
 				<th>Data tabeli</th>
 				<th>Kurs</th>
-				<th>Wartość w zł</th>	
+				<th>Wartość w zł</th>
+				<th>Opłata drogowa</th>
+				<th>Wydrukowane?</th>	
 				<th> </th>	
 			</tr>
 			<% @rates.each do |rate| %>
@@ -23,7 +25,9 @@
 				<td><%= rate.table %></td>
 				<td><%= rate.table_date %></td>
 				<td><%= rate.converter %></td>
-				<td><%= rate.value_pln %></td>				
+				<td><%= rate.value_pln %></td>
+				<td><%= rate.payment %></td>
+				<td><%= rate.printed %></td>				
 				<td><%= link_to "Show", rate_path(rate.id) %></td>
 			</tr>
 			<% end %>

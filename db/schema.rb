@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528154705) do
+ActiveRecord::Schema.define(version: 20170528192015) do
 
   create_table "cars", force: :cascade do |t|
     t.string   "car_number"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20170528154705) do
     t.date     "date"
     t.decimal  "converter"
     t.integer  "car_id"
+    t.boolean  "payment"
+    t.boolean  "printed"
     t.index ["car_id"], name: "index_rates_on_car_id"
   end
 
