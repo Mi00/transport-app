@@ -28,7 +28,7 @@
 				<td><%= rate.value_pln %></td>
 				<td><%= rate.payment %></td>
 				<td><%= rate.printed %></td>				
-				<td><%= link_to "Show", rate_path(rate.id) %></td>
+				<td><%= link_to "Show", rate_path(rate.id) %> <%= link_to "PDF", rate_path(rate.id, format: :pdf) %></td>
 			</tr>
 			<% end %>
 		</table>

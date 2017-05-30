@@ -3,12 +3,16 @@
 		<table class="table table-hover col-md-12">
 			<tr>
 				<th>Lp.</th>
-				<th>Car number</th>				
+				<th>Car number</th>
+				<th colspan="3"></th>				
 			</tr>
 			<% @cars.each do |car| %>
 			<tr>
 				<td><%= car.id %></td>
 				<td><%= car.car_number %></td>
+				<td><%= link_to 'Show', car %></td>
+		        <td><%= link_to 'Edit', edit_car_path(car) %></td>
+		        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>
 			<% end %>
 		</table>

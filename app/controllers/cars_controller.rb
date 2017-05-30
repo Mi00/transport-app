@@ -1,4 +1,6 @@
 class CarsController < ApplicationController
+	before_action :set_car, only: [:show, :edit, :update, :destroy]
+
 
 	def index
 		@cars = Car.all
@@ -26,11 +28,35 @@ class CarsController < ApplicationController
 		end
 	end
 
+	# PATCH/PUT /cars/1
+  # PATCH/PUT /cars/1.json
+  def update
+    respond_to do |format|
+      if @car.update(car_params)
+        format.html { redirect_to @car, notice: 'car was successfully updated.' }
+        format.json { render :show, status: :ok, location: @car }
+      else
+        format.html { render :edit }
+        format.json { render json: @car.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /cars/1
+  # DELETE /cars/1.json
+  def destroy
+    @car.destroy
+    respond_to do |format|
+      format.html { redirect_to cars_url, notice: 'car was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
 
 
 	private
     # Use callbacks to share common setup or constraints between actions.
-    def set_rate
+    def set_car
     	@car = Car.find(params[:id])
     end
 

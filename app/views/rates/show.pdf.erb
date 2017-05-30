@@ -1,3 +1,6 @@
+<%= wicked_pdf_stylesheet_link_tag "pdf.css" -%>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
 <div class="row text-center">
 	<div class="col-md-6 borders">
 		Pieczec firmowa
@@ -12,7 +15,7 @@
 
 <div class="row text-center">
 	<div class="col-md-6 borders">
-		 Przedsiębiorstwo Transportowo-Handlowo-Usługowe "TRANS-MAR"<br>
+		 Przedsiębiorstwo Transportowo-Handlowo-Usługowe<br>"TRANS-MAR"
 		 Janusz Franciszek Kawula<br>
 	</div>
 	<div class="col-md-3 borders">
@@ -56,7 +59,7 @@
 		<% if @rate.currency != "PLN" %>
 			TAB. NR <%= @rate.table %> z dn. <%= @rate.table_date %><br>
 			<%= @rate.currency %> = <%= @rate.converter  %> PLN<br>
-			<%= @rate.value_currency %> <%= @rate.currency %> x <%= @rate.converter %> = <%= @rate.value_pln %>
+			<%= @rate.value_currency %> <%= @rate.currency %> x <%= @rate.converter %> = <%= @rate.value_pln %> PLN
 		<% else %>
 			&nbsp;
 			<br>&nbsp;
@@ -91,12 +94,12 @@
 		&nbsp;<br>
 		Podpis
 	</div>
-	<div class="col-md-5 borders">
+	<div class="col-md-4 borders">
 		&nbsp;<br>
 		&nbsp;<br>
 		Zatwierdził
 	</div>
-	<div class="col-md-2 borders">
+	<div class="col-md-3 borders">
 		&nbsp;<br>
 		Pozycja księgowania nr<br>
 		&nbsp; 
