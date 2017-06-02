@@ -1,10 +1,10 @@
 class RatesController < ApplicationController
   
   before_action :set_rate, only: [:show, :edit, :update, :destroy]
-  before_action :set_cars, only: [:new, :edit, :create, :update]
+  before_action :set_cars, only: [:index, :new, :edit, :create, :update]
 
   def index
-  	@rates = Rate.all
+    @rates = Rate.search(params[:search])
   end
 
   def new
