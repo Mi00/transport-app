@@ -8,3 +8,15 @@
 .borders {
 	border: 1px solid black;
 }
+body {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.no-top {
+	border-top-style: none;
+	padding-top: 1px;
+}
+.no-bot {
+	border-bottom-style: none;
+	padding-bottom: 1px;
+}

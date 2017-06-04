@@ -56,7 +56,7 @@
 		<% if @rate.currency != "PLN" %>
 			TAB. NR <%= @rate.table %> z dn. <%= @rate.table_date %><br>
 			<%= @rate.currency %> = <%= @rate.converter  %> PLN<br>
-			<%= @rate.value_currency %> <%= @rate.currency %> x <%= @rate.converter %> = <%= @rate.value_pln %>
+			<%= @rate.value_currency %> <%= @rate.currency %> x <%= @rate.converter %> PLN = <%= @rate.value_pln %>
 		<% else %>
 			&nbsp;
 			<br>&nbsp;

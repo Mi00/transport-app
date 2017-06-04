@@ -1,112 +1,112 @@
-<%= wicked_pdf_stylesheet_link_tag "pdf.css" -%>
+<%= wicked_pdf_stylesheet_link_tag "pdf.css" %>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-<div class="row text-center">
-	<div class="col-md-6 borders">
-		Pieczec firmowa
+	<div class="row text-center">
+		<div class="col-md-6 borders">
+			Pieczec firmowa
+		</div>
+		<div class="col-md-3 borders">
+			Miejscowosc
+		</div>
+		<div class="col-md-3 borders">
+			DD/MM/RRRR
+		</div>
 	</div>
-	<div class="col-md-3 borders">
-		Miejscowosc
-	</div>
-	<div class="col-md-3 borders">
-		DD/MM/RRRR
-	</div>
-</div>
 
-<div class="row text-center">
-	<div class="col-md-6 borders">
-		 Przedsiębiorstwo Transportowo-Handlowo-Usługowe<br>"TRANS-MAR"
-		 Janusz Franciszek Kawula<br>
+	<div class="row text-center">
+		<div class="col-md-6 borders no-bot">
+			 Przedsiębiorstwo Transportowo-Handlowo-Usługowe<br>"TRANS-MAR"
+			 Janusz Franciszek Kawula<br>
+		</div>
+		<div class="col-md-3 borders">
+			Szczecin<br>&nbsp;
+		</div>
+		<div class="col-md-3 borders">
+			<%= @rate.date %><br>&nbsp;
+		</div>
 	</div>
-	<div class="col-md-3 borders">
-		Szczecin<br>&nbsp;
-	</div>
-	<div class="col-md-3 borders">
-		<%= @rate.date %><br>&nbsp;
-	</div>
-</div>
-<div class="row text-center">
-	<div class="col-md-6 borders">
-		ul. Lniana 16/25, 70-777 Szczecin<br>
-		 NIP PL 955-169-96-67, REGON 812685370
-	</div>
-	<div class="col-md-3 borders">
-		Dowod wewnetrzny<br>
-		&nbsp;
-	</div>
-	<div class="col-md-3 borders">
-		&nbsp;<br>
-		&nbsp;
-	</div>
-</div>
-
-<div class="row text-center">
-	<div class="col-md-8 borders">		
-		Nazwa towaru, opłaty lub tytuł i cel wydatku
-	</div>
-	<div class="col-md-4 borders">
-		Wartość [zł]
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-8 text-left borders">
-		<% if @rate.payment == true %>
-		OPŁATA DROGOWA<br>
-		<% else %>
-		&nbsp;<br>
-		<% end %>
-		<%= @rate.car.car_number %><br>
-		<% if @rate.currency != "PLN" %>
-			TAB. NR <%= @rate.table %> z dn. <%= @rate.table_date %><br>
-			<%= @rate.currency %> = <%= @rate.converter  %> PLN<br>
-			<%= @rate.value_currency %> <%= @rate.currency %> x <%= @rate.converter %> = <%= @rate.value_pln %> PLN
-		<% else %>
+	<div class="row text-center">
+		<div class="col-md-6 borders no-top">
+			ul. Lniana 16/25, 70-777 Szczecin<br>
+			 NIP PL 955-169-96-67, REGON 812685370
+		</div>
+		<div class="col-md-3 borders">
+			Dowod wewnetrzny<br>
 			&nbsp;
-			<br>&nbsp;
-			<br>&nbsp;
-		<% end %>
+		</div>
+		<div class="col-md-3 borders">
+			&nbsp;<br>
+			&nbsp;
+		</div>
 	</div>
-	<div class="col-md-4 text-right borders">
-		<%= @rate.value_pln %><br>&nbsp;
-		<br>&nbsp;
-		<br>&nbsp;
-		<br>&nbsp;
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-2 borders text-center">
-		Słownie zł:
-	</div>
-	<div class="col-md-6 borders text-center">
-		&nbsp;
-	</div>
-	<div class="col-md-2 borders text-center">
-		RAZEM:
-	</div>
-	<div class="col-md-2 borders text-right">
-		<%= @rate.value_pln %>
-	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-3 borders">
-		&nbsp;<br>
-		&nbsp;<br>
-		Podpis
+	<div class="row text-center">
+		<div class="col-md-8 borders">		
+			Nazwa towaru, opłaty lub tytuł i cel wydatku
+		</div>
+		<div class="col-md-4 borders">
+			Wartość [zł]
+		</div>
 	</div>
-	<div class="col-md-4 borders">
-		&nbsp;<br>
-		&nbsp;<br>
-		Zatwierdził
+	<div class="row">
+		<div class="col-md-8 text-left borders">
+			<% if @rate.payment == true %>
+			OPŁATA DROGOWA<br>
+			<% else %>
+			&nbsp;<br>
+			<% end %>
+			<%= @rate.car.car_number %><br>
+			<% if @rate.currency != "PLN" %>
+				TAB. NR <%= @rate.table %> z dn. <%= @rate.table_date %><br>
+				<%= @rate.currency %> = <%= @rate.converter  %> PLN<br>
+				<%= @rate.value_currency %> <%= @rate.currency %> x <%= @rate.converter %> PLN = <%= @rate.value_pln %> PLN
+			<% else %>
+				&nbsp;
+				<br>&nbsp;
+				<br>&nbsp;
+			<% end %>
+		</div>
+		<div class="col-md-4 text-right borders">
+			<%= @rate.value_pln %><br>&nbsp;
+			<br>&nbsp;
+			<br>&nbsp;
+			<br>&nbsp;
+		</div>
 	</div>
-	<div class="col-md-3 borders">
-		&nbsp;<br>
-		Pozycja księgowania nr<br>
-		&nbsp; 
+	<div class="row">
+		<div class="col-md-2 borders text-center">
+			Słownie zł:
+		</div>
+		<div class="col-md-6 borders text-center">
+			&nbsp;
+		</div>
+		<div class="col-md-2 borders text-center">
+			RAZEM:
+		</div>
+		<div class="col-md-2 borders text-right">
+			<%= @rate.value_pln %>
+		</div>
 	</div>
-	<div class="col-md-2 borders">
-		&nbsp;<br>
-		&nbsp;<br>
-		&nbsp;
+
+	<div class="row">
+		<div class="col-md-3 borders">
+			&nbsp;<br>
+			&nbsp;<br>
+			Podpis
+		</div>
+		<div class="col-md-4 borders">
+			&nbsp;<br>
+			&nbsp;<br>
+			Zatwierdził
+		</div>
+		<div class="col-md-3 borders">
+			&nbsp;<br>
+			Pozycja księgowania nr<br>
+			&nbsp; 
+		</div>
+		<div class="col-md-2 borders">
+			&nbsp;<br>
+			&nbsp;<br>
+			&nbsp;
+		</div>
 	</div>
-</div>
