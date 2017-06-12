@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :car_number %>
-    <%= f.text_field :car_number %>
+    <%= f.label "Nr rejestracyjny" %>
+    <%= f.text_field :car_number, placeholder: "np. ZS 091AV" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Stwórz samochód' %>
   </div>
 <% end %>

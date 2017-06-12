@@ -4,7 +4,7 @@ class RatesController < ApplicationController
   before_action :set_cars, only: [:index, :new, :edit, :create, :update]
 
   def index
-    @rates = Rate.search(params[:search])
+    @rates = Rate.search(params[:search]).order(created_at: :desc)
   end
 
   def new
@@ -80,6 +80,6 @@ class RatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rate_params
-      params.require(:rate).permit(:table, :value_currency, :value_pln, :currency, :date, :table_date, :converter, :car_id, :payment, :printed)
+      params.require(:rate).permit(:table, :value_currency, :value_pln, :currency, :date, :table_date, :converter, :car_id, :payment, :printed, :description)
     end
 end

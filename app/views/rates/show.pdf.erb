@@ -3,10 +3,10 @@
 
 	<div class="row text-center">
 		<div class="col-md-6 borders">
-			Pieczec firmowa
+			Pieczęć firmowa
 		</div>
 		<div class="col-md-3 borders">
-			Miejscowosc
+			Miejscowość
 		</div>
 		<div class="col-md-3 borders">
 			DD/MM/RRRR
@@ -22,16 +22,16 @@
 			Szczecin<br>&nbsp;
 		</div>
 		<div class="col-md-3 borders">
-			<%= @rate.date %><br>&nbsp;
+			<%= @rate.date.strftime("%d-%m-%Y") %><br>&nbsp;
 		</div>
 	</div>
 	<div class="row text-center">
 		<div class="col-md-6 borders no-top">
 			ul. Lniana 16/25, 70-777 Szczecin<br>
-			 NIP PL 955-169-96-67, REGON 812685370
+			NIP PL 955-169-96-67, REGON 812685370
 		</div>
 		<div class="col-md-3 borders">
-			Dowod wewnetrzny<br>
+			Dowód wewnętrzny<br>
 			&nbsp;
 		</div>
 		<div class="col-md-3 borders">
@@ -44,22 +44,18 @@
 		<div class="col-md-8 borders">		
 			Nazwa towaru, opłaty lub tytuł i cel wydatku
 		</div>
-		<div class="col-md-4 borders">
+		<div class="col-md-4 borders text-right">
 			Wartość [zł]
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-8 text-left borders">
-			<% if @rate.payment == true %>
-			OPŁATA DROGOWA<br>
-			<% else %>
-			&nbsp;<br>
-			<% end %>
+			<%= @rate.description %><br>
 			<%= @rate.car.car_number %><br>
 			<% if @rate.currency != "PLN" %>
-				TAB. NR <%= @rate.table %> z dn. <%= @rate.table_date %><br>
+				TAB. NR <%= @rate.table %> z dn. <%= @rate.table_date.strftime("%d-%m-%Y") %><br>
 				<%= @rate.currency %> = <%= @rate.converter  %> PLN<br>
-				<%= @rate.value_currency %> <%= @rate.currency %> x <%= @rate.converter %> PLN = <%= @rate.value_pln %> PLN
+				<%= number_with_precision(@rate.value_currency, precision: 2) %> <%= @rate.currency %> x <%= @rate.converter %> PLN = <%= @rate.value_pln %> PLN
 			<% else %>
 				&nbsp;
 				<br>&nbsp;
@@ -75,15 +71,19 @@
 	</div>
 	<div class="row">
 		<div class="col-md-2 borders text-center">
+			&nbsp;<br>
 			Słownie zł:
 		</div>
 		<div class="col-md-6 borders text-center">
+			&nbsp;<br>
 			&nbsp;
 		</div>
 		<div class="col-md-2 borders text-center">
+			&nbsp;<br>
 			RAZEM:
 		</div>
 		<div class="col-md-2 borders text-right">
+			&nbsp;<br>
 			<%= @rate.value_pln %>
 		</div>
 	</div>
@@ -92,19 +92,23 @@
 		<div class="col-md-3 borders">
 			&nbsp;<br>
 			&nbsp;<br>
+			&nbsp;<br>
 			Podpis
 		</div>
 		<div class="col-md-4 borders">
+			&nbsp;<br>
 			&nbsp;<br>
 			&nbsp;<br>
 			Zatwierdził
 		</div>
 		<div class="col-md-3 borders">
 			&nbsp;<br>
-			Pozycja księgowania nr<br>
-			&nbsp; 
+			&nbsp;<br>
+			&nbsp;<br>
+			Pozycja księgowania nr			
 		</div>
 		<div class="col-md-2 borders">
+			&nbsp;<br>
 			&nbsp;<br>
 			&nbsp;<br>
 			&nbsp;

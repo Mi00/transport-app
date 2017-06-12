@@ -1,0 +1,47 @@
+<!-- 
+This is statistic page! <br>
+<%= sum(1) %>
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<%= form_tag(statistics_url, method: 'get') do %>
+		<p>
+			<%= label :search, "Nr auta" %>
+			<%= text_field_tag :search, params[:search] %>
+			<%= submit_tag "Szukaj", name: nil %>
+		</p>
+		<% end %>
+	</div>
+</div>
+<div class="row">
+	<%= sum(@car) %>
+</div>
+-->
+<div class="row">
+	<div class="col-md-12 text-center">
+		Wybierz miesiac: select-miesiac-rok
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12 text-center">
+		Wybrany miesiac:<br>
+		<h1>Kwiecien 2017</h1><br>
+		Suma dowod na ten miesiac:<br>
+		<h2>55555555</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12 text-center">
+		Suma dowodow wybranego miesiaca dla poszczegolnych aut:
+	</div>
+</div>
+<div class="row">
+	<% @cars.each do |car| %>
+		<div class="col-md-3 text-center borders" style="margin: 5px;">
+			<p>Nr rej auta:</p>
+			<h2><%= car.car_number %></h2><br>
+			<p>Suma dowodow:</p>
+			<h3><%= sum(car.id) %></h3>
+		</div>
+	<% end %>
+</div>

@@ -1,7 +1,6 @@
 class Rate < ApplicationRecord
-	belongs_to :car
+	  belongs_to :car
 	  validates :value_currency, numericality: true
-
 	  before_save :get_values
 
 	  def get_values
@@ -21,7 +20,7 @@ class Rate < ApplicationRecord
 		    self.table_date = data['rates'][0]['effectiveDate']	    
 		    self.converter = data['rates'][0]['mid']
 		    value_pln = value_currency * converter
-		    self.value_pln = value_pln.round(2)
+		    self.value_pln = value_pln.truncate(2)
 
 		else
 			self.value_pln = value_currency
