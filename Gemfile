@@ -43,6 +43,12 @@ gem 'httparty', '~> 0.13.7'
 gem 'wicked_pdf', '~> 1.1'
 gem 'wkhtmltopdf-binary', '~> 0.12.3.1'
 
+#datepicker
+gem 'bootstrap-datepicker-rails'
+
+#jquery turbolinks
+gem 'jquery-turbolinks'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

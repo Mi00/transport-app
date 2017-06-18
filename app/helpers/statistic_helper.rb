@@ -5,13 +5,11 @@ module StatisticHelper
 		end
 	end
 
-	def search(search)
-  	  	if search != "" && search != nil
-  	  		search = search.upcase
-  	  		car = Car.find_by_car_number("#{search}")
-  	  		where('car_id LIKE ?', "%#{car.id}%")  	  		
-  	  	else
-  	  		all
-  	  	end
-  	  end
+  def sum_month(car, date)
+    if date != nil
+      month = date['month']
+      year = date['year']
+      rates = Car.find(car).rates.where("cast(strftime('%m', date_column) as int) = ?", month)
+    end
+  end
 end

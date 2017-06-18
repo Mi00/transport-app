@@ -17,17 +17,34 @@ This is statistic page! <br>
 	<%= sum(@car) %>
 </div>
 -->
+<script type="text/javascript">
+	$('.datepicker').datepicker({
+        clearBtn: true,
+        language: "pl",
+        daysOfWeekHighlighted: "0,6",
+        todayHighlight: true
+    });
+</script>
 <div class="row">
-	<div class="col-md-12 text-center">
-		Wybierz miesiac: select-miesiac-rok
+	<div class="col-md-12 text-center form-group">	
+	<%= form_tag(statistics_url, method: 'get') do %>
+		<p>
+			Wybierz zakres: Od
+			<%= text_field :start_date, params[:start_date], class: "datepicker" %>
+			Do
+			<%= text_field :end_date, params[:end_date], class: "datepicker" %>
+			<%= submit_tag "Szukaj", name: nil %>
+		</p>
+		<% end %>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-12 text-center">
 		Wybrany miesiac:<br>
-		<h1>Kwiecien 2017</h1><br>
+		<h1></h1><br>
 		Suma dowod na ten miesiac:<br>
 		<h2>55555555</h2>
+		<h3></h3>
 	</div>
 </div>
 <div class="row">
@@ -41,7 +58,7 @@ This is statistic page! <br>
 			<p>Nr rej auta:</p>
 			<h2><%= car.car_number %></h2><br>
 			<p>Suma dowodow:</p>
-			<h3><%= sum(car.id) %></h3>
+			<h3></h3>
 		</div>
 	<% end %>
 </div>

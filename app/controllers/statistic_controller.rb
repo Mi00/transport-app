@@ -9,5 +9,6 @@ class StatisticController < ApplicationController
 		end
 =end
 		@cars = Car.all
+		# @rates = Rate.where("created_at >= :start_date AND created_at <= :end_date", {start_date:  params[:start_date], end_date: params[:end_date]})
 	end
 end
