@@ -1,24 +1,6 @@
-<!-- 
-This is statistic page! <br>
-<%= sum(1) %>
-
-<div class="row">
-	<div class="col-md-12 text-center">
-		<%= form_tag(statistics_url, method: 'get') do %>
-		<p>
-			<%= label :search, "Nr auta" %>
-			<%= text_field_tag :search, params[:search] %>
-			<%= submit_tag "Szukaj", name: nil %>
-		</p>
-		<% end %>
-	</div>
-</div>
-<div class="row">
-	<%= sum(@car) %>
-</div>
--->
 <script type="text/javascript">
 	$('.datepicker').datepicker({
+		format: "yyyy-mm-dd",
         clearBtn: true,
         language: "pl",
         daysOfWeekHighlighted: "0,6",
@@ -33,32 +15,45 @@ This is statistic page! <br>
 			<%= text_field :start_date, params[:start_date], class: "datepicker" %>
 			Do
 			<%= text_field :end_date, params[:end_date], class: "datepicker" %>
-			<%= submit_tag "Szukaj", name: nil %>
+			<%= submit_tag "Szukaj", name: nil, class: "btn btn-primary" %>
+			<%= link_to "Wyczyść wyszukiwanie", statistics_path, class: "btn btn-danger" %>
 		</p>
 		<% end %>
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-12 text-center">
-		Wybrany miesiac:<br>
-		<h1></h1><br>
-		Suma dowod na ten miesiac:<br>
-		<h2>55555555</h2>
-		<h3></h3>
+	<div class="col-md-6 col-md-offset-3 text-center">
+		Wybrany okres:<br>
+		<h2><% if params[:start_date] != nil %>
+				<%= params[:start_date][0].to_date.strftime("%d-%m-%Y") %>   -   <%= params[:end_date][0].to_date.strftime("%d-%m-%Y") %>
+			<% else %>
+				Nie wybrano okresu
+			<% end %>
+		</h2><br>
+		
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-12 text-center">
-		Suma dowodow wybranego miesiaca dla poszczegolnych aut:
+	<div class="col-md-4 col-md-offset-4 text-center">
+		<div class="summary">
+			<p>Suma dowod na ten okres:</p>
+			<h1><%= @sum_rates %> zł</h1>
+		</div>
 	</div>
 </div>
+<br>
+<div class="row">
+	<div class="col-md-12 text-center">
+		Suma dowodow wybranego okresu dla poszczegolnych aut:
+	</div>
+</div>
+<br>
 <div class="row">
 	<% @cars.each do |car| %>
-		<div class="col-md-3 text-center borders" style="margin: 5px;">
-			<p>Nr rej auta:</p>
+		<div class="col-md-2 text-center borders rounded">
 			<h2><%= car.car_number %></h2><br>
 			<p>Suma dowodow:</p>
-			<h3></h3>
+			<h3><%= sum(car.id) %> zł</h3>
 		</div>
 	<% end %>
 </div>
