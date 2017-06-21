@@ -1,6 +1,6 @@
 <%= wicked_pdf_stylesheet_link_tag "pdf.css" %>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
+<div class="row">
 	<div class="row text-center">
 		<div class="col-md-6 borders">
 			Pieczęć firmowa
@@ -40,8 +40,8 @@
 		</div>
 	</div>
 
-	<div class="row text-center">
-		<div class="col-md-8 borders">		
+	<div class="row">
+		<div class="col-md-8 borders text-center">		
 			Nazwa towaru, opłaty lub tytuł i cel wydatku
 		</div>
 		<div class="col-md-4 borders text-right">
@@ -55,7 +55,7 @@
 			<% if @rate.currency != "PLN" %>
 				TAB. NR <%= @rate.table %> z dn. <%= @rate.table_date.strftime("%d-%m-%Y") %><br>
 				<%= @rate.currency %> = <%= @rate.converter  %> PLN<br>
-				<%= number_with_precision(@rate.value_currency, precision: 2) %> <%= @rate.currency %> x <%= @rate.converter %> PLN = <%= @rate.value_pln %> PLN
+				<%= number_with_precision(@rate.value_currency, precision: 2) %> <%= @rate.currency %> x <%= @rate.converter %> PLN = <%= number_with_precision(@rate.value_pln, precision: 2) %> PLN
 			<% else %>
 				&nbsp;
 				<br>&nbsp;
@@ -63,13 +63,14 @@
 			<% end %>
 		</div>
 		<div class="col-md-4 text-right borders">
-			<%= @rate.value_pln %><br>&nbsp;
+			<%= number_with_precision(@rate.value_pln, precision: 2) %><br>&nbsp;
 			<br>&nbsp;
 			<br>&nbsp;
 			<br>&nbsp;
 		</div>
 	</div>
 	<div class="row">
+
 		<div class="col-md-2 borders text-center">
 			&nbsp;<br>
 			Słownie zł:
@@ -84,7 +85,7 @@
 		</div>
 		<div class="col-md-2 borders text-right">
 			&nbsp;<br>
-			<%= @rate.value_pln %>
+			<%= number_with_precision(@rate.value_pln, precision: 2) %>
 		</div>
 	</div>
 
@@ -95,7 +96,7 @@
 			&nbsp;<br>
 			Podpis
 		</div>
-		<div class="col-md-4 borders">
+		<div class="col-md-5 borders">
 			&nbsp;<br>
 			&nbsp;<br>
 			&nbsp;<br>
@@ -107,10 +108,11 @@
 			&nbsp;<br>
 			Pozycja księgowania nr			
 		</div>
-		<div class="col-md-2 borders">
+		<div class="col-md-1 borders">
 			&nbsp;<br>
 			&nbsp;<br>
 			&nbsp;<br>
 			&nbsp;
 		</div>
-	</div>
+	</div>	
+</div>	
