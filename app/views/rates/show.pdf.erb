@@ -1,56 +1,37 @@
 <%= wicked_pdf_stylesheet_link_tag "pdf.css" %>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<div class="row">
-	<div class="row text-center">
-		<div class="col-md-6 borders">
-			Pieczęć firmowa
-		</div>
-		<div class="col-md-3 borders">
-			Miejscowość
-		</div>
-		<div class="col-md-3 borders">
-			DD/MM/RRRR
-		</div>
-	</div>
-
-	<div class="row text-center">
-		<div class="col-md-6 borders no-bot">
-			 Przedsiębiorstwo Transportowo-Handlowo-Usługowe<br>"TRANS-MAR"
-			 Janusz Franciszek Kawula<br>
-		</div>
-		<div class="col-md-3 borders">
-			Szczecin<br>&nbsp;
-		</div>
-		<div class="col-md-3 borders">
-			<%= @rate.date.strftime("%d-%m-%Y") %><br>&nbsp;
-		</div>
-	</div>
-	<div class="row text-center">
-		<div class="col-md-6 borders no-top">
-			ul. Lniana 16/25, 70-777 Szczecin<br>
-			NIP PL 955-169-96-67, REGON 812685370
-		</div>
-		<div class="col-md-3 borders">
-			Dowód wewnętrzny<br>
-			&nbsp;
-		</div>
-		<div class="col-md-3 borders">
-			&nbsp;<br>
-			&nbsp;
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-8 borders text-center">		
-			Nazwa towaru, opłaty lub tytuł i cel wydatku
-		</div>
-		<div class="col-md-4 borders text-right">
-			Wartość [zł]
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-8 text-left borders">
-			<%= @rate.description %><br>
+<div class="table-responsive">
+	<table class="table table-bordered text-center">
+		<tbody>
+			<tr>
+				<td colspan="3">Pieczęć firmowa</td>
+				<td>Miejscowość</td>
+				<td>DD-MM-RRRR</td>
+			</tr>
+			<tr>
+				<td rowspan="2" colspan="3" style="font-weight: bold;">
+				Przedsiębiorstwo Transportowo-Handlowo-Usługowe<br>
+				"TRANS-MAR"
+				Janusz Franciszek Kawula<br>
+				ul. Lniana 16/25, 70-777 Szczecin<br>
+				NIP PL 955-169-96-67, REGON 812685370
+				</td>
+				<td>Szczecin
+				</td>
+				<td><%= @rate.date.strftime("%d-%m-%Y") %></td>
+				
+			</tr>
+			<tr>
+				<td valign="middle" style="display: inline; vertical-align: middle;">Dowód wewnętrzny</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="4">Nazwa towaru, opłaty lub tytuł i cel wydatku</td>
+				<td colspan="1">Wartość [zł]</td>
+			</tr>
+			<tr>
+				<td colspan="4" class="text-left">
+					<%= @rate.description %><br>
 			<%= @rate.car.car_number %><br>
 			<% if @rate.currency != "PLN" %>
 				TAB. NR <%= @rate.table %> z dn. <%= @rate.table_date.strftime("%d-%m-%Y") %><br>
@@ -61,58 +42,40 @@
 				<br>&nbsp;
 				<br>&nbsp;
 			<% end %>
-		</div>
-		<div class="col-md-4 text-right borders">
-			<%= number_with_precision(@rate.value_pln, precision: 2) %><br>&nbsp;
+				</td>
+				<td class="text-right">
+					<%= number_with_precision(@rate.value_pln, precision: 2) %><br>&nbsp;
 			<br>&nbsp;
 			<br>&nbsp;
 			<br>&nbsp;
-		</div>
-	</div>
-	<div class="row">
-
-		<div class="col-md-2 borders text-center">
-			&nbsp;<br>
-			Słownie zł:
-		</div>
-		<div class="col-md-6 borders text-center">
-			&nbsp;<br>
-			&nbsp;
-		</div>
-		<div class="col-md-2 borders text-center">
-			&nbsp;<br>
-			RAZEM:
-		</div>
-		<div class="col-md-2 borders text-right">
-			&nbsp;<br>
-			<%= number_with_precision(@rate.value_pln, precision: 2) %>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-3 borders">
+				</td>
+			</tr>
+			<tr>
+				<td>Słownie zł:</td>
+				<td colspan="2" style="color: white;">kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</td>
+				<td class="text-left">RAZEM</td>
+				<td class="text-right"><%= number_with_precision(@rate.value_pln, precision: 2) %></td>
+			</tr>
+			<tr class="text-left">
+				<td>&nbsp;<br>
+				&nbsp;<br>
 			&nbsp;<br>
 			&nbsp;<br>
-			&nbsp;<br>
-			Podpis
-		</div>
-		<div class="col-md-5 borders">
-			&nbsp;<br>
+			Podpis</td>
+				<td colspan="2">&nbsp;<br>
+				&nbsp;<br>
 			&nbsp;<br>
 			&nbsp;<br>
-			Zatwierdził
-		</div>
-		<div class="col-md-3 borders">
+			Zatwierdził</td>
+				<td>&nbsp;<br>
+				&nbsp;<br>&nbsp;<br>
+			Pozycja <br>
+			księgowania nr</td>
+				<td>&nbsp;<br>
+				&nbsp;<br>
 			&nbsp;<br>
-			&nbsp;<br>
-			&nbsp;<br>
-			Pozycja księgowania nr			
-		</div>
-		<div class="col-md-1 borders">
-			&nbsp;<br>
-			&nbsp;<br>
-			&nbsp;<br>
-			&nbsp;
-		</div>
-	</div>	
-</div>	
+			&nbsp;<br>&nbsp;</td>
+			</tr>
+		</tbody>		
+	</table>
+</div>

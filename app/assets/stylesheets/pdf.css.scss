@@ -24,3 +24,12 @@ body {
 .center-cells {
 	margin-top: 10px;
 }
+.table-bordered > tbody > tr > td{
+	border: 1px solid black;
+}
+.table-bordered > tbody > tr{
+	border: 1px solid black;
+}
+.row2 {
+	margin-top: 15px;
+}

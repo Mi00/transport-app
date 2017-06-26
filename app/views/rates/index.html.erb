@@ -1,16 +1,25 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#datatable').dataTable({
+			"language": {
+				"url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Polish.json"
+			}
+		});
+		});
+</script>
 <div class="row">
-	<div class="col-md-12 text-center">
+	<div class="col-md-12 text-center form-group">
 		<%= form_tag(rates_path, method: 'get') do %>
 		<p>
-			<%= label :search, "NR AUTA" %>
-			<%= text_field_tag :search, params[:search] %>
-			<%= submit_tag "Szukaj", name: nil %>
+			<%= label :search, "NR AUTA", class: "control-label col-md-1 col-md-offset-4" %>
+			<div class="col-md-2">
+				<%= text_field_tag :search, params[:search], class: "form-control" %>				
+			</div>
+			<%= submit_tag "Szukaj", name: nil, class: 'btn btn-primary col-md-1' %>
 		</p>
 		<% end %>
 	</div>
 </div>
-<br>
-<br>
 <div class="row">
 	<div class="col-md-12 text-center">
 		<%= link_to "Nowy dowod", new_rate_path, class: "btn btn-lg btn-success" %>
@@ -20,49 +29,51 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<table class="table table-hover col-md-12">
-			<tr>
-				<th>Lp.</th>
-				<th colspan="2">Auto</th>
-				<th>Data</th>
-				<th>Waluta</th>
-				<th>Wartość w walucie</th>
-				<th>Tabela</th>
-				<th>Data tabeli</th>
-				<th>Kurs</th>
-				<th>Wartość w zł</th>
-				<th>Rodzaj opłaty</th>
-				<th>Druk?</th>	
-    		    <th colspan="4"></th>
-			</tr>
-			<% @rates.each do |rate| %>
-			<tr>
-				<td><%= rate.id %></td>
-				<td colspan="2"><%= find_carname(rate.car_id) %></td>
-				<td><%= rate.date.strftime("%d-%m-%Y") %></td>
-				<td><%= rate.currency %></td>
-				<td><%= rate.value_currency %></td>
-				<td><%= rate.table %></td>
-				<td><%= rate.table_date.strftime("%d-%m-%Y") if rate.table_date %></td>
-				<td><%= rate.converter %></td>
-				<td><%= rate.value_pln %></td>
-				<td><%= rate.description %></td>
-				<td>
-					<% if rate.printed == true %>
-						<span class="glyphicon glyphicon-ok"></span>
-					<% else %>
-						<span class="glyphicon glyphicon-remove"></span>
-					<% end %>					
-				</td>
-								
-				<td><%= link_to "Widok", rate_path(rate.id) %></td>
-				<td><%= link_to "PDF", rate_path(rate.id, format: :pdf) %></td>
-				<td><%= link_to 'Edycja', edit_rate_path(rate) %></td>
-        		<td><%= link_to 'Usuń', rate, method: :delete, data: { confirm: 'Jesteś pewien?' } %></td>
-			</tr>
-			<% end %>
+		<table id="datatable" class="table">
+			<thead>
+				<tr>
+					<th>Lp.</th>
+					<th>Auto</th>
+					<th>Data</th>
+					<th>Waluta</th>
+					<th>Wartość w walucie</th>
+					<th>Tabela</th>
+					<th>Data tabeli</th>
+					<th>Kurs</th>
+					<th>Wartość w zł</th>
+					<th>Rodzaj opłaty</th>
+					<th>Druk?</th>	
+	    		    <th>pdf</th>
+	    		    <th>edycja</th>
+	    		    <th>usun</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @rates.each do |rate| %>
+				<tr>
+					<td><%= rate.id %></td>
+					<td><%= find_carname(rate.car_id) %></td>
+					<td><%= rate.date.strftime("%d-%m-%Y") %></td>
+					<td><%= rate.currency %></td>
+					<td><%= rate.value_currency %></td>
+					<td><%= rate.table %></td>
+					<td><%= rate.table_date.strftime("%d-%m-%Y") if rate.table_date %></td>
+					<td><%= rate.converter %></td>
+					<td><%= rate.value_pln %></td>
+					<td><%= rate.description %></td>
+					<td>
+						<% if rate.printed == true %>
+							<span class="glyphicon glyphicon-ok"></span>
+						<% else %>
+							<span class="glyphicon glyphicon-remove"></span>
+						<% end %>					
+					</td>
+					<td><%= link_to "PDF", rate_path(rate.id, format: :pdf) %></td>
+					<td><%= link_to 'Edycja', edit_rate_path(rate) %></td>
+	        		<td><%= link_to 'Usuń', rate, method: :delete, data: { confirm: 'Jesteś pewien?' } %></td>
+				</tr>
+				<% end %>
+			</tbody>
 		</table>
 	</div>
 </div>
-
-

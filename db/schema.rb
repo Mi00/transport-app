@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609093906) do
+ActiveRecord::Schema.define(version: 20170626190939) do
 
   create_table "cars", force: :cascade do |t|
     t.string   "car_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "active"
+  end
+
+  create_table "fuels", force: :cascade do |t|
+    t.float    "liters"
+    t.date     "tank_date"
+    t.integer  "car_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_fuels_on_car_id"
   end
 
   create_table "rates", force: :cascade do |t|

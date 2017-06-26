@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nr samochodu</strong>
+  <%= @fuel.car_id %>
+</p>
+<p>
+  <strong>Ilość litrów</strong>
+  <%= @fuel.liters %>
+</p>
+<p>
+  <strong>Data tankowania</strong>
+  <%= @fuel.tank_date %>
+</p>
+
+<%= link_to 'Edycja', edit_fuel_path(@fuel) %> |
+<%= link_to 'Wstecz', fuels_path %>

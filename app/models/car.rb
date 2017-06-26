@@ -1,5 +1,6 @@
 class Car < ApplicationRecord
 	has_many :rates
+	has_many :fuels
 
 	validates :car_number, presence: true
 

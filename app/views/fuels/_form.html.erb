@@ -1,0 +1,44 @@
+<script type="text/javascript">
+  $('.datepicker').datepicker({
+        format: "yyyy-mm-dd",
+        clearBtn: true,
+        language: "pl",
+        daysOfWeekHighlighted: "0,6",
+        todayHighlight: true
+    });
+</script>
+<%= form_for(fuel) do |f| %>
+<% if fuel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(fuel.errors.count, "error") %> prohibited this fuel from being saved:</h2>
+
+      <ul>
+      <% fuel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+  <div class="form-group">
+    <%= f.label "Nr rejestracyjny", class: "control-label col-md-2" %>
+    <%= f.collection_select :car_id, @cars, :id, :car_number, class: "form-control" %>
+  </div>
+  </div>
+  <div class="row">
+  <div class="form-group">
+    <%= f.label "Ilość litrów", class: "control-label col-md-2" %>
+    <div class="col-md-2"><%= f.text_field :liters, placeholder: "Np. 78.56", class: "form-control" %></div>
+  </div>
+  </div>
+
+  <div class="row" style="margin-top: 10px;">
+  <div class="form-group">
+    <%= f.label "Data tankowania", class: "control-label col-md-2" %>
+    <%= f.text_field :tank_date, class: "datepicker", 'data-no-turbolink': true %>
+  </div>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Dodaj tankowanie' %>
+  </div>
+<% end %>

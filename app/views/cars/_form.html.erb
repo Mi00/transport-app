@@ -10,13 +10,23 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label "Nr rejestracyjny" %>
-    <%= f.text_field :car_number, placeholder: "np. ZS 091AV" %>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Nr rejestracyjny", class: 'control-label col-md-2' %>
+      <div class="col-md-3"><%= f.text_field :car_number, placeholder: "np. ZS 091AV", class: 'form-control' %></div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit 'Stwórz samochód' %>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Czy jest aktywne", class: 'control-label col-md-2' %>
+      <div class="col-md-1"><%= f.check_box :active, class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="actions">
+      <%= f.submit 'Zapisz samochód', class: 'btn btn-primary col-md-2 col-md-offset-2 text-center' %>
+    </div>
   </div>
 <% end %>

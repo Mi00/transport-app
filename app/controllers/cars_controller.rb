@@ -33,7 +33,7 @@ class CarsController < ApplicationController
   def update
     respond_to do |format|
       if @car.update(car_params)
-        format.html { redirect_to @car, notice: 'car was successfully updated.' }
+        format.html { redirect_to cars_path, notice: 'car was successfully updated.' }
         format.json { render :show, status: :ok, location: @car }
       else
         format.html { render :edit }
@@ -62,6 +62,6 @@ class CarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def car_params
-    	params.require(:car).permit(:car_number)
+    	params.require(:car).permit(:car_number, :active)
     end
 end

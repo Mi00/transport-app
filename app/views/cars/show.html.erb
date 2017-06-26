@@ -1,9 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="text-center">
+	<h2>Nr rejestracyjny:</h2>
+	<h1><%= @car.car_number %></h1>
 
-<p>
-  <strong>Car number:</strong>
-  <%= @car.car_number %>
-</p>
+	<br>
 
-<%= link_to 'Edycja', edit_car_path(@car) %> |
-<%= link_to 'Wstecz', cars_path %>
+	<h2>Aktywne?</h2>
+	<h1>
+		<% if @car.active == true %>
+			<span class="glyphicon glyphicon-ok"></span>
+		<% else %>
+			<span class="glyphicon glyphicon-remove"></span>
+		<% end %>
+	</h1>
+
+	<h3><%= link_to 'Edycja', edit_car_path(@car) %></h3>
+	<h3><%= link_to 'Wstecz', cars_path %></h3>
+</div>
