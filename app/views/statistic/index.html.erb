@@ -7,6 +7,7 @@
         todayHighlight: true
     });
 </script>
+
 <div class="row">
 	<div class="col-md-12 text-center form-group">	
 	<%= form_tag(statistics_url, method: 'get') do %>
@@ -41,6 +42,11 @@
 		</div>
 	</div>
 </div>
+<% if @chart != nil %>
+	<div class="row">
+		<%= column_chart @chart, {ytitle: "Wydatki[zł]"} %>
+	</div>
+<% end %>
 <br>
 <div class="row">
 	<div class="col-md-12 text-center">

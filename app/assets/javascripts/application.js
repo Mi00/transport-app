@@ -18,6 +18,7 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require dataTables/jquery.dataTables
+//= require chartkick
 //= require_tree .
 //= require turbolinks
 

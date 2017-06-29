@@ -49,9 +49,12 @@ gem 'bootstrap-datepicker-rails'
 #jquery turbolinks
 gem 'jquery-turbolinks'
 
+#dataTables
 gem 'jquery-datatables-rails' , '~> 3.4.0'
 gem 'jquery-ui-rails'
 gem 'bootstrap-will_paginate'
+#charts
+gem "chartkick"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -12,6 +12,7 @@ class StatisticController < ApplicationController
 		if params[:start_date] != nil 
 			@rates = Rate.where("date >= :start_date AND date <= :end_date", {start_date:  params[:start_date], end_date: params[:end_date]})
 			@sum_rates = @rates.sum(:value_pln)
+			@chart = @rates.joins(:car).group(:car_number).sum(:value_pln)
 		else
 			@rates = nil
 		end
