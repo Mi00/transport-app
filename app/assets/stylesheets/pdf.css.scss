@@ -5,31 +5,16 @@
 @include make-grid(md);
 @include make-grid(lg);
 
-.borders {
-	border: 1px solid black;
-	margin: 0 -1px -1px 0;
-}
 body {
 	margin-left: 20px;
 	margin-right: 20px;
 }
-.no-top {
-	border-top-style: none;
-	padding-top: 1px;
-}
-.no-bot {
-	border-bottom-style: none;
-	padding-bottom: 1px;
-}
-.center-cells {
-	margin-top: 10px;
+.table-bordered {
+	font-size: 12px;
 }
 .table-bordered > tbody > tr > td{
 	border: 1px solid black;
 }
 .table-bordered > tbody > tr{
 	border: 1px solid black;
-}
-.row2 {
-	margin-top: 15px;
 }

@@ -21,7 +21,7 @@ class RatesController < ApplicationController
       format.pdf do 
         render pdf: "dowod_wewn_#{@rate.date}",
                 template: "rates/show.pdf.erb",
-                :margin => {:top                => 0,
+                :margin => {:top                => 10,
                            :bottom             => 0,
                            :left               => 0,
                            :right              => 0}
