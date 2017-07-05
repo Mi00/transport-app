@@ -52,7 +52,7 @@
 			</tr>
 			<tr>
 				<td>Słownie zł:</td>
-				<td colspan="2" style="color: white;">kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</td>
+				<td colspan="2"><%= humanize_polish_rates(@rate.value_pln) %></td>
 				<td class="text-left">RAZEM</td>
 				<td class="text-right"><%= number_with_precision(@rate.value_pln, precision: 2) %></td>
 			</tr>

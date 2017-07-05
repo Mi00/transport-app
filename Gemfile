@@ -55,6 +55,8 @@ gem 'jquery-ui-rails'
 gem 'bootstrap-will_paginate'
 #charts
 gem "chartkick"
+# polish number
+gem 'polish_number'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
