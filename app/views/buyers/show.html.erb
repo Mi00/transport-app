@@ -1,0 +1,26 @@
+<div class="text-center">
+	<div class="row borders">
+		<div class="col-md-6">
+			<h1>Nazwa</h1>
+			<h2><%= @buyer.name %></h2>
+		</div>
+	
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-6">
+				<h1>Adres</h1>
+					<h2><%= @buyer.address %></h2></div>
+				<div class="col-md-6">
+					<h1>Kod pocztowy</h1>
+					<h2><%= @buyer.postcode %></h2>
+				</div>
+				<div class="col-md-12">		
+					<h1>Miejscowość</h1>
+					<h2><%= @buyer.city %></h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h1 class="col-md-6 text-right"><%= link_to 'Edycja', edit_buyer_path(@buyer) %></h1>
+	<h1 class="col-md-6 text-left"><%= link_to 'Wstecz', buyers_path %></h1>
+</div>

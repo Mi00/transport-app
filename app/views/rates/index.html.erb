@@ -36,10 +36,6 @@
 					<th>Auto</th>
 					<th>Data</th>
 					<th>Waluta</th>
-					<th>Wartość w walucie</th>
-					<th>Tabela</th>
-					<th>Data tabeli</th>
-					<th>Kurs</th>
 					<th>Wartość w zł</th>
 					<th>Rodzaj opłaty</th>
 					<th>Druk?</th>	
@@ -55,10 +51,6 @@
 					<td><%= find_carname(rate.car_id) %></td>
 					<td><%= rate.date.strftime("%d-%m-%Y") %></td>
 					<td><%= rate.currency %></td>
-					<td><%= rate.value_currency %></td>
-					<td><%= rate.table %></td>
-					<td><%= rate.table_date.strftime("%d-%m-%Y") if rate.table_date %></td>
-					<td><%= rate.converter %></td>
 					<td><%= rate.value_pln %></td>
 					<td><%= rate.description %></td>
 					<td>

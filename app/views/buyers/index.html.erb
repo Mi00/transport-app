@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="col-md-12 text-center">
+		<%= link_to "Nowy sprzedawca", new_buyer_path, class: 'btn btn-success' %>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-hover col-md-12">
+			<tr>
+				<th>Nazwa</th>
+				<th colspan="3"></th>				
+			</tr>
+			<% @buyers.each do |buyer| %>
+			<tr>
+				<td><%= buyer.name %></td>
+				<td><%= link_to 'Pokaż', buyer %></td>
+		        <td><%= link_to 'Edycja', edit_buyer_path(buyer) %></td>
+		        <td><%= link_to 'Usuń', buyer, method: :delete, data: { confirm: 'Czy na pewno chcesz usunac sprzedawce?' } %></td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+
+

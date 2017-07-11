@@ -1,0 +1,74 @@
+<%= form_for(seller) do |f| %>
+<% if seller.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(seller.errors.count, "error") %> prohibited this seller from being saved:</h2>
+
+      <ul>
+      <% seller.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Nazwa", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :name, class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Adres", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :address, placeholder: "Ulica i numer", class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Kod pocztowy", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :postcode, class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Miejscowość", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :city, class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Nip", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :nip, placeholder: "132-456-78-91", class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Regon", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :regon, placeholder: "123456789", class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Nazwa banku", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :bank_name, class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Numer konta", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :account_number, placeholder: "12 1111 2222 3333 4444 5555 6666", class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="actions">
+      <%= f.submit 'Zapisz sprzedawce', class: 'btn btn-primary col-md-2 col-md-offset-2 text-center' %>
+    </div>
+  </div>
+<% end %>

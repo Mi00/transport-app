@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626190939) do
+ActiveRecord::Schema.define(version: 20170709194613) do
+
+  create_table "buyers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "postcode"
+    t.string   "city"
+    t.string   "nip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cars", force: :cascade do |t|
     t.string   "car_number"
@@ -28,6 +38,30 @@ ActiveRecord::Schema.define(version: 20170626190939) do
     t.index ["car_id"], name: "index_fuels_on_car_id"
   end
 
+  create_table "pln_invoices", force: :cascade do |t|
+    t.string   "number"
+    t.string   "city"
+    t.date     "inv_date"
+    t.date     "sell_date"
+    t.string   "payment_form"
+    t.integer  "payment_term"
+    t.date     "payment_day"
+    t.string   "route"
+    t.date     "load_date"
+    t.decimal  "price_netto"
+    t.decimal  "total_netto"
+    t.decimal  "price_brutto"
+    t.decimal  "total_brutto"
+    t.string   "car_numbers"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "original"
+    t.integer  "buyer_id"
+    t.integer  "seller_id"
+    t.index ["buyer_id"], name: "index_pln_invoices_on_buyer_id"
+    t.index ["seller_id"], name: "index_pln_invoices_on_seller_id"
+  end
+
   create_table "rates", force: :cascade do |t|
     t.string   "currency"
     t.string   "table"
@@ -43,6 +77,19 @@ ActiveRecord::Schema.define(version: 20170626190939) do
     t.boolean  "printed"
     t.string   "description"
     t.index ["car_id"], name: "index_rates_on_car_id"
+  end
+
+  create_table "sellers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "postcode"
+    t.string   "nip"
+    t.string   "regon"
+    t.string   "bank_name"
+    t.string   "account_number"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
 end

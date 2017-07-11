@@ -1,0 +1,53 @@
+<%= form_for(buyer) do |f| %>
+<% if buyer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(buyer.errors.count, "error") %> prohibited this buyer from being saved:</h2>
+
+      <ul>
+      <% buyer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Nazwa", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :name, class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Adres", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :address, placeholder: "Ulica i numer", class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Kod pocztowy", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :postcode, class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Miejscowość", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :city, class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <%= f.label "Nip", class: 'control-label col-md-2' %>
+      <div class="col-md-8"><%= f.text_field :nip, placeholder: "132-456-78-91", class: 'form-control' %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="actions">
+      <%= f.submit 'Zapisz nabywce', class: 'btn btn-primary col-md-2 col-md-offset-2 text-center' %>
+    </div>
+  </div>
+<% end %>

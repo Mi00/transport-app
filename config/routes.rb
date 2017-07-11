@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-	root 'rates#index'
+  root 'rates#index'
+  resources :pln_invoices
+  resources :buyers
+  resources :sellers
   resources :rates
   resources :cars
   resources :fuels
