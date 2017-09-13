@@ -1,25 +1,23 @@
-# README
+Tis is application to manage existing trasport company. It is still in developing mode to add more features.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Here is demo version:
 
-Things you may want to cover:
+https://transport-manager.herokuapp.com/
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
+You can add cars.
 
-* Database creation
+You can calculate the outcomes for cars from other currency.
 
-* Database initialization
+You can add refuels. 
 
-* How to run the test suite
+You can create invoices with sellers and buyers. Pdf has that look on request boss.
 
-* Services (job queues, cache servers, search engines, etc.)
+Also you can check statistics for this outcomes for cars by dates.
 
-* Deployment instructions
 
-* ...
-# transport-app
+
+Coming:
+
+Look at comment part in views/layouts/_navbar.
