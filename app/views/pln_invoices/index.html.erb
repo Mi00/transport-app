@@ -9,12 +9,18 @@
 		<table class="table table-hover col-md-12">
 			<tr>
 				<th>Nazwa</th>
+				<th>Nabywca</th>
+				<th>Data</th>
+				<th>Kwota</th>
 				<th colspan="3"></th>				
 			</tr>
 			<% @pln_invoices.each do |pln_invoice| %>
 			<tr>
 				<td><%= pln_invoice.number %></td>
-				<td><%= link_to 'Pokaż', pln_invoice %></td>
+				<td><%= pln_invoice.buyer.name %></td>
+				<td><%= pln_invoice.inv_date %></td>
+				<td>&nbsp;</td>
+				<td><%= link_to "PDF", pln_invoice_path(pln_invoice.id, format: :pdf) %></td>
 		        <td><%= link_to 'Edycja', edit_pln_invoice_path(pln_invoice) %></td>
 		        <td><%= link_to 'Usuń', pln_invoice, method: :delete, data: { confirm: 'Czy na pewno chcesz usunac fakture?' } %></td>
 			</tr>

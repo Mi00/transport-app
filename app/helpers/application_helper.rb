@@ -4,15 +4,20 @@ module ApplicationHelper
 	end
 
 	def humanize_polish_invoice(value)
-		cents = number_with_precision(value, precision: 2).last(2)
-		if lasttwo == 0
-			PolishNumber.translate(value) + " " + "zł" + " " + "00" + " " + "gr"
-		else
-			PolishNumber.translate(value) + " " + "zł" + " " + "#{cents}" + " " + "gr"
-		end
+		cents = number_with_precision(value, precision: 2).last(2)		
+		PolishNumber.translate(value) + " " + "zł" + " " + PolishNumber.translate(cents) + " " + "gr"		
 	end
+
 	def humanize_polish_rates(value)
 		cents = number_with_precision(value, precision: 2).last(2)
 		PolishNumber.translate(value) + " " + "zł" + " " + "#{cents}"+ "/100"
+	end
+
+	def find_seller(seller_id)
+		Seller.find(seller_id)		
+	end
+
+	def find_buyer(buyer_id)
+		Buyer.find(buyer_id)		
 	end
 end

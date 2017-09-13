@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170709194613) do
+ActiveRecord::Schema.define(version: 20170808164921) do
 
   create_table "buyers", force: :cascade do |t|
     t.string   "name"
@@ -38,6 +38,23 @@ ActiveRecord::Schema.define(version: 20170709194613) do
     t.index ["car_id"], name: "index_fuels_on_car_id"
   end
 
+  create_table "pln_invoice_items", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "number"
+    t.integer  "quantity"
+    t.decimal  "price_netto"
+    t.decimal  "price_brutto"
+    t.integer  "vat"
+    t.decimal  "total"
+    t.integer  "pln_invoice_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.decimal  "total_netto"
+    t.decimal  "total_brutto"
+    t.decimal  "vat_value"
+    t.index ["pln_invoice_id"], name: "index_pln_invoice_items_on_pln_invoice_id"
+  end
+
   create_table "pln_invoices", force: :cascade do |t|
     t.string   "number"
     t.string   "city"
@@ -46,18 +63,14 @@ ActiveRecord::Schema.define(version: 20170709194613) do
     t.string   "payment_form"
     t.integer  "payment_term"
     t.date     "payment_day"
-    t.string   "route"
-    t.date     "load_date"
-    t.decimal  "price_netto"
-    t.decimal  "total_netto"
-    t.decimal  "price_brutto"
-    t.decimal  "total_brutto"
-    t.string   "car_numbers"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.boolean  "original"
     t.integer  "buyer_id"
     t.integer  "seller_id"
+    t.decimal  "sum_netto"
+    t.decimal  "sum_vat_value"
+    t.decimal  "sum_total"
     t.index ["buyer_id"], name: "index_pln_invoices_on_buyer_id"
     t.index ["seller_id"], name: "index_pln_invoices_on_seller_id"
   end

@@ -1,1 +1,148 @@
-_form.html.erb
+<script type="text/javascript">
+  $('.datepicker').datepicker({
+        format: "yyyy-mm-dd",
+        clearBtn: true,
+        language: "pl",
+        daysOfWeekHighlighted: "0,6",
+        todayHighlight: true,
+        autoclose: true
+    });
+</script>
+<%= form_for(pln_invoice, html: {id: "invoice"}) do |f| %>
+<% if pln_invoice.errors.any? %>
+<ul>
+  <% pln_invoice.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+	<div class="row" style="margin: 0">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-5 text-left">
+				<h4>FAKTURA VAT</h4>
+			</div>
+			<div class="col-md-7 text-right">
+				<h4>nr: <%= f.text_field :number %></h4>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin: 0">
+		<div class="col-md-12 text-center">
+			<h5>ORYGINAŁ</h5>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<p>Miejscowość: <%= f.text_field :city, value: "Szczecin" %></p>
+		</div>
+		<div class="col-md-4">
+			<p>Forma płatności: <%= f.text_field :payment_form, value: "Przelew" %></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<p>Data wystawienia: <%= f.text_field :inv_date, class: "datepicker", 'data-no-turbolink': true %></p>
+		</div>
+		<div class="col-md-4">
+			<p>Termin płatności: <%= f.number_field :payment_term, placeholder: "Ilość dni"  %></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<p>Data sprzedaży: <%= f.text_field :sell_date, class: "datepicker", 'data-no-turbolink': true %></p>
+		</div>
+		<div class="col-md-4">
+			<p>Data płatności:</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			Sprzedawca:<br>
+			<%= f.collection_select :seller_id, @sellers, :id, :name, class: "form-control" %>
+		</div>
+		<div class="col-md-6">
+			Nabywca<br>
+			<%= f.collection_select :buyer_id, @buyers, :id, :name, class: "form-control" %>
+		</div>
+	</div>
+	<div class="row">
+		<table class="table table-bordered">
+		<thead>
+			<tr class="text-center">
+				<th>Lp.</th>
+				<th>Nazwa towaru(usługi)<hr>
+				PKWiU</th>
+				<th>Ilość</th>
+				<th>Ceno netto</th>
+				<th>Wartość<br>
+				netto</th>
+				<th>VAT<br>
+				%</th>
+				<th>Kwota<br>
+				VAT</th>
+				<th>Wartość z<br>
+				podatkiem<br>
+				VAT</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody class="table-items">	
+				<%= f.fields_for :pln_invoice_items do |builder| %>
+					<%= render 'pln_invoice_items', f: builder %>
+				<% end %>
+			<tr class="text-center add-row">
+				<td colspan="9">
+					<%= link_to_add_row('Dodaj rząd', f, :pln_invoice_items, class: 'btn btn-primary') %>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="3" rowspan="2">
+					Do zapłaty złotych: &nbsp;<br>
+					Słownie:<br>
+					&nbsp;
+				</td>
+				<td>RAZEM:</td>
+				<td id="total_netto"></td>
+				<td></td>
+				<td id="total_vat_value"></td>
+				<td id="total"></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>w tym:</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+	<div class="row">
+		<div class="col-md-4 text-center">
+			<br>
+			<br>
+			<br>
+			<hr>
+			Podpis i pieczęć osoby<br>
+			uprawninej do<br>
+			wystawienia faktury
+		</div>
+		<div class="col-md-4 col-md-offset-4 text-center">
+			<br>
+			<br>
+			<br>
+			<hr>
+			Podpis osoby<br>
+			uprawnionej<br>
+			do odbioru faktury
+		</div>
+	</div>
+	
+
+	<div class="actions text-center">
+    <%= f.submit "Stwórz fakture", class: "btn btn-primary" %>
+  </div>
+<% end %>

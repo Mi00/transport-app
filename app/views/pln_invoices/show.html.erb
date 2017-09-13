@@ -1,2 +1,150 @@
-<h1>PlnInvoices#show</h1>
-<p>Find me in app/views/pln_invoices/show.html.erb</p>
+<%= wicked_pdf_stylesheet_link_tag "pdf.css" %>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<div class="row">
+	<div class="text-center">
+		<%= link_to "Generuj PDF", pln_invoice_path(@pln_invoice.id, format: :pdf), class: "btn btn-primary" %>
+	</div>
+</div>
+<br>
+<div class="row" style="margin: 0">
+	<div class="col-md-6 col-md-offset-3" style="background-color: rgb(150, 150, 150);">
+		<div class="col-md-6 text-left">
+			<h4>FAKTURA VAT</h4>
+		</div>
+		<div class="col-md-6 text-right">
+			<h4>nr: <%= @pln_invoice.number %></h4>
+		</div>
+	</div>
+</div>
+<div class="row" style="margin: 0">
+	<div class="col-md-12 text-center">
+		<h5 style="font-weight: bold">ORYGINAŁ</h5>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8">
+		<p>Miejscowość: <%= @pln_invoice.city %></p>
+	</div>
+	<div class="col-md-4">
+		<p>Forma płatności: <%= @pln_invoice.payment_form %></p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8">
+		<p>Data wystawienia: <%= @pln_invoice.inv_date.strftime("%d-%m-%Y") %></p>
+	</div>
+	<div class="col-md-4">
+		<p>Termin płatności: <%= @pln_invoice.payment_term %></p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8">
+		<p>Data sprzedaży: <%= @pln_invoice.sell_date.strftime("%d-%m-%Y") %></p>
+	</div>
+	<div class="col-md-4">
+		<p>Data płatności: <%= @pln_invoice.payment_day.strftime("%d-%m-%Y") %></p>
+	</div>
+</div>
+<div class="row double-horizontal">
+	<div class="col-md-6 double-vertical">
+		<span style="font-weight: bold; font-size: 12px;">Sprzedawca:</span><br>
+		<%= @pln_invoice.seller.name %><br>
+		<%= @pln_invoice.seller.postcode + " " + @pln_invoice.seller.city %><br>
+		<%= @pln_invoice.seller.address %> <br>
+		NIP: <%= @pln_invoice.seller.nip %> REGON:<%= @pln_invoice.seller.regon %><br>
+		bank: <%= @pln_invoice.seller.bank_name %><br>
+		nr konta: <%= @pln_invoice.seller.account_number %>
+	</div>
+	<div class="col-md-6">
+		<span style="font-weight: bold; font-size: 12px;">Nabywca</span><br>
+		<%= @pln_invoice.buyer.name %><br>
+		<%= @pln_invoice.buyer.postcode + " " + @pln_invoice.buyer.city %><br>
+		<%= @pln_invoice.buyer.address %><br>
+		NIP: <%= @pln_invoice.buyer.nip %>
+	</div>
+</div>
+<div class="row">
+	<table class="table table-bordered">
+		<tr style="background-color: rgb(150, 150, 150);">
+			<td>Lp.</td>
+			<td>Nazwa towaru(usługi)<hr>
+			PKWiU</td>
+			<td>Ilość</td>
+			<td>Ceno netto</td>
+			<td>Wartość<br>
+			netto</td>
+			<td>VAT<br>
+			%</td>
+			<td>Kwota<br>
+			VAT</td>
+			<td>Wartość z<br>
+			podatkiem<br>
+			VAT</td>
+		</tr>
+		<% @pln_invoice_items.each do |item| %>
+			<tr>
+				<td><%= item.number %></td>
+				<td><%= item.name %></td>
+				<td><%= item.quantity %></td>
+				<td><%= item.price_netto %></td>
+				<td><%= item.total_netto %></td>
+				<td><%= item.vat %></td>
+				<td><%= item.vat_value %></td>
+				<td><%= item.total %></td>
+			</tr>
+		<% end %>
+		<% (10-@pln_invoice_items.count).times do %>
+		<tr>
+			<td>&nbsp;</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<% end %>
+		<% if @prices.total != nil %>
+			<tr>
+				<td colspan="3" rowspan="2">
+					Do zapłaty złotych: <%= number_with_precision(@pln_invoice.sum_total, precision: 2) %><br>
+					Słownie:<br>
+					<%= humanize_polish_invoice(@pln_invoice.sum_total) %>
+				</td>
+				<td>RAZEM:</td>
+				<td><%= @pln_invoice.sum_netto %></td>
+				<td></td>
+				<td><%= @pln_invoice.sum_vat_value %></td>
+				<td><%= @pln_invoice.sum_total %></td>
+			</tr>
+			<tr>
+				<td>w tym:</td>
+				<td><%= @pln_invoice.sum_netto %></td>
+				<td><%= @prices.vat %></td>
+				<td><%= @pln_invoice.sum_vat_value %></td>
+				<td><%= @pln_invoice.sum_total %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>
+<div class="row">
+	<div class="col-md-4 text-center">
+		<br>
+		<br>
+		<br>
+		<hr>
+		Podpis i pieczęć osoby<br>
+		uprawninej do<br>
+		wystawienia faktury
+	</div>
+	<div class="col-md-4 col-md-offset-4 text-center">
+		<br>
+		<br>
+		<br>
+		<hr>
+		Podpis osoby<br>
+		uprawnionej<br>
+		do odbioru faktury
+	</div>
+</div>

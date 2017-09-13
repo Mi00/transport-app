@@ -1,0 +1,17 @@
+<tr class="text-center item-row">
+	<td></td>
+	<td><%= f.text_area :name %></td>
+	<td class="quantity"><%= f.number_field :quantity %></td>
+	<td class="price_netto"><%= f.number_field :price_netto, step: "0.01" %></td>
+	<td class="total_netto"></td>
+	<td class="vat"><%= f.select(:vat, [nil, 0, 8, 23]) %></td>
+	<td class="vat_value"></td>
+	<td class="total_brutto"></td>
+	<td>
+		<%= f.hidden_field :_destroy %>
+		<%= link_to '#', class: 'remove_record' do %>
+		<span class="glyphicon glyphicon-remove" style="color: red; font-size: 2em;"></span>
+		<% end %>
+	</td>
+
+</tr>

@@ -5,11 +5,12 @@ class PlnInvoicesController < ApplicationController
   before_action :set_buyers, only: [:index, :new, :edit, :create, :update]
 
   def index
-    @pln_invoices = Pln_invoice.all
+    @pln_invoices = PlnInvoice.all.order(created_at: :desc)
   end
 
   def new
-  	@pln_invoice = Pln_invoice.new
+  	@pln_invoice = PlnInvoice.new
+    @pln_invoice.pln_invoice_items.build(params[:pln_invoice_item])
   end
 
   def edit
@@ -31,11 +32,11 @@ class PlnInvoicesController < ApplicationController
   end
 
   def create
-  	@pln_invoice = Pln_invoice.new(pln_invoice_params)
+  	@pln_invoice = PlnInvoice.new(pln_invoice_params)
 
   	respond_to do |format|
       if @pln_invoice.save
-        format.html { redirect_to pln_invoices_path, notice: 'pln_invoice was successfully created.' }
+        format.html { redirect_to @pln_invoice, notice: 'pln_invoice was successfully created.' }
         format.json { render :index, status: :created, location: pln_invoices_path }
       else
         format.html { render :new }
@@ -72,7 +73,9 @@ class PlnInvoicesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pln_invoice
-      @pln_invoice = Pln_invoice.find(params[:id])
+      @pln_invoice = PlnInvoice.find(params[:id])
+      @pln_invoice_items = @pln_invoice.pln_invoice_items
+      @prices = @pln_invoice_items.where.not(price_netto: nil).first
     end
 
     def set_sellers
@@ -80,11 +83,11 @@ class PlnInvoicesController < ApplicationController
     end
 
     def set_buyers
-    	@buyers = Buyr.all
+    	@buyers = Buyer.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pln_invoice_params
-      params.require(:pln_invoice).permit(:number, :city, :inv_date, :sell_date, :payment_form, :payment_term, :payment_day, :route, :load_date, :price_netto, :total_netto, :price_brutto, :total_brutto, :car_numbers, :original, :buyer_id, :seller_id)
+      params.require(:pln_invoice).permit(:number, :city, :inv_date, :sell_date, :payment_form, :payment_term, :payment_day, :original, :buyer_id, :seller_id, :sum_total, :sum_netto, :sum_vat_value, pln_invoice_items_attributes: PlnInvoiceItem.attribute_names.map(&:to_sym).push(:_destroy))
     end
 end
