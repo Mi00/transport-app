@@ -19,7 +19,7 @@
 				<td><%= pln_invoice.number %></td>
 				<td><%= pln_invoice.buyer.name %></td>
 				<td><%= pln_invoice.inv_date %></td>
-				<td>&nbsp;</td>
+				<td><%= pln_invoice.sum_total %></td>
 				<td><%= link_to "PDF", pln_invoice_path(pln_invoice.id, format: :pdf) %></td>
 		        <td><%= link_to 'Edycja', edit_pln_invoice_path(pln_invoice) %></td>
 		        <td><%= link_to 'Usuń', pln_invoice, method: :delete, data: { confirm: 'Czy na pewno chcesz usunac fakture?' } %></td>
