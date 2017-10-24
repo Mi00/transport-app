@@ -12,4 +12,9 @@ module StatisticHelper
 			return false
 		end
 	end
+	def sum_liters(car)
+		if !car.nil? && !@fuels.nil?
+			@fuels.where(car_id: "#{car}").sum(:liters)
+		end
+	end
 end

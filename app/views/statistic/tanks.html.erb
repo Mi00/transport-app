@@ -1,0 +1,65 @@
+<script type="text/javascript">
+	$('.datepicker').datepicker({
+		format: "yyyy-mm-dd",
+        clearBtn: true,
+        language: "pl",
+        daysOfWeekHighlighted: "0,6",
+        todayHighlight: true
+    });
+</script>
+
+<div class="row">
+	<div class="col-md-12 text-center form-group">	
+	<%= form_tag(statistic_tanks_url, method: 'get') do %>
+		<p>
+			Wybierz zakres: Od
+			<%= text_field :start_date, params[:start_date], class: "datepicker" %>
+			Do
+			<%= text_field :end_date, params[:end_date], class: "datepicker" %>
+			<% if (params[:start_date] == nil) || (params[:end_date] == nil) %>
+				<%= submit_tag "Szukaj", name: nil, class: "btn btn-primary", id: "szukaj" %>
+			<% end %>
+			<%= link_to "Wyczyść wyszukiwanie", statistic_tanks_path, class: "btn btn-danger" %>
+		</p>
+		<% end %>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6 text-center">
+		Wybrany okres:<br>
+		<h2><% if is_valid?(params[:start_date]) && is_valid?(params[:end_date]) %>
+				<%= params[:start_date][0].to_date.strftime("%d-%m-%Y") %>   -   <%= params[:end_date][0].to_date.strftime("%d-%m-%Y") %>
+			<% else %>
+				Nie wybrano okresu
+			<% end %>
+		</h2><br>
+		
+	</div>
+	<div class="col-md-4 col-md-offset-1 text-center">
+		<div class="summary" id="wyczysc">
+			<p>Suma litrów na ten okres:</p>
+			<h1><%= @sum_fuels %> l</h1>
+		</div>
+	</div>
+</div>
+<% if @chart != nil %>
+	<div class="row">
+		<%= column_chart @chart, {ytitle: "Litry[l]"} %>
+	</div>
+<% end %>
+<br>
+<div class="row">
+	<div class="col-md-12 text-center">
+		Suma litrów wybranego okresu dla poszczegolnych aut:
+	</div>
+</div>
+<br>
+<div class="row">
+	<% @cars.each do |car| %>
+		<div class="col-md-2 text-center borders rounded">
+			<h2><%= car.car_number %></h2><br>
+			<p>Suma dowodow:</p>
+			<h3 style="font-weight: bold;"><%= sum_liters(car.id) %> l</h3>
+		</div>
+	<% end %>
+</div>

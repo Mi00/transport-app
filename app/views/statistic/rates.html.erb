@@ -10,7 +10,7 @@
 
 <div class="row">
 	<div class="col-md-12 text-center form-group">	
-	<%= form_tag(statistics_url, method: 'get') do %>
+	<%= form_tag(statistic_rates_url, method: 'get') do %>
 		<p>
 			Wybierz zakres: Od
 			<%= text_field :start_date, params[:start_date], class: "datepicker" %>
@@ -19,7 +19,7 @@
 			<% if (params[:start_date] == nil) || (params[:end_date] == nil) %>
 				<%= submit_tag "Szukaj", name: nil, class: "btn btn-primary", id: "szukaj" %>
 			<% end %>
-			<%= link_to "Wyczyść wyszukiwanie", statistics_path, class: "btn btn-danger" %>
+			<%= link_to "Wyczyść wyszukiwanie", statistic_rates_path, class: "btn btn-danger" %>
 		</p>
 		<% end %>
 	</div>

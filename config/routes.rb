@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :rates
   resources :cars
   resources :fuels
-  get '/statistics', to: 'statistic#index'
-
+  get '/statistic/rates', to: 'statistic#rates'
+  get '/statistic/tanks', to: 'statistic#tanks'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
