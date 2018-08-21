@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170808164921) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "buyers", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
@@ -35,7 +38,7 @@ ActiveRecord::Schema.define(version: 20170808164921) do
     t.integer  "car_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["car_id"], name: "index_fuels_on_car_id"
+    t.index ["car_id"], name: "index_fuels_on_car_id", using: :btree
   end
 
   create_table "pln_invoice_items", force: :cascade do |t|
@@ -52,7 +55,7 @@ ActiveRecord::Schema.define(version: 20170808164921) do
     t.decimal  "total_netto"
     t.decimal  "total_brutto"
     t.decimal  "vat_value"
-    t.index ["pln_invoice_id"], name: "index_pln_invoice_items_on_pln_invoice_id"
+    t.index ["pln_invoice_id"], name: "index_pln_invoice_items_on_pln_invoice_id", using: :btree
   end
 
   create_table "pln_invoices", force: :cascade do |t|
@@ -71,8 +74,8 @@ ActiveRecord::Schema.define(version: 20170808164921) do
     t.decimal  "sum_netto"
     t.decimal  "sum_vat_value"
     t.decimal  "sum_total"
-    t.index ["buyer_id"], name: "index_pln_invoices_on_buyer_id"
-    t.index ["seller_id"], name: "index_pln_invoices_on_seller_id"
+    t.index ["buyer_id"], name: "index_pln_invoices_on_buyer_id", using: :btree
+    t.index ["seller_id"], name: "index_pln_invoices_on_seller_id", using: :btree
   end
 
   create_table "rates", force: :cascade do |t|
@@ -89,7 +92,7 @@ ActiveRecord::Schema.define(version: 20170808164921) do
     t.boolean  "payment"
     t.boolean  "printed"
     t.string   "description"
-    t.index ["car_id"], name: "index_rates_on_car_id"
+    t.index ["car_id"], name: "index_rates_on_car_id", using: :btree
   end
 
   create_table "sellers", force: :cascade do |t|
@@ -105,4 +108,9 @@ ActiveRecord::Schema.define(version: 20170808164921) do
     t.datetime "updated_at",     null: false
   end
 
+  add_foreign_key "fuels", "cars"
+  add_foreign_key "pln_invoice_items", "pln_invoices"
+  add_foreign_key "pln_invoices", "buyers"
+  add_foreign_key "pln_invoices", "sellers"
+  add_foreign_key "rates", "cars"
 end
