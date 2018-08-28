@@ -2,6 +2,7 @@ class Rate < ApplicationRecord
 	  belongs_to :car
 	  validates :value_currency, numericality: true
 	  before_save :get_values
+		validates_presence_of :car_id
 
 	  def get_values
 	  	if currency != "PLN"

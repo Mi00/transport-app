@@ -10,8 +10,8 @@
 </script>
 <%= form_for(rate, html: {class: "form-horizontal"}) do |f| %>
 <% if rate.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(rate.errors.count, "error") %> prohibited this rate from being saved:</h2>
+    <div class="aler alert-danger" id="error_explanation">
+      <h2><strong><%= pluralize(rate.errors.count, "error") %> prohibited this rate from being saved:</strong></h2>
 
       <ul>
       <% rate.errors.full_messages.each do |message| %>
